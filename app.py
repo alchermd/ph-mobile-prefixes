@@ -16,19 +16,19 @@ def main():
     for i in range(0, len(all_data), 2):
         key_val_data.append({
             'number': all_data[i],
-            'network': all_data[i + 1],
+            'networkName': all_data[i + 1],
         })
 
     # Transform previous list into format used by the app.
     reduced_data = []
     for num in key_val_data:
         # Check if num.network is in reduced_data
-        if num['network'] in [d['network'] for d in reduced_data]:
-            list(filter(lambda d: d['network'] == num['network'],
+        if num['networkName'] in [d['networkName'] for d in reduced_data]:
+            list(filter(lambda d: d['networkName'] == num['networkName'],
                         reduced_data))[0]['numbers'].append(num['number'])
         else:
             reduced_data.append({
-                'network': num['network'],
+                'networkName': num['networkName'],
                 'numbers': [num['number']]
             })
 
