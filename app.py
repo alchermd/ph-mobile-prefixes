@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 from bs4 import BeautifulSoup
 import urllib.request
+import json
 
 
 def main():
-    # For debugging
-    import pprint
-    pp = pprint.PrettyPrinter(indent=4)
-
     # Setup
     url = 'http://typist.ph/5620/mobile-number-prefixes-2017/'
     sauce = urllib.request.urlopen(url).read()
@@ -35,8 +32,9 @@ def main():
                 'numbers': [num['number']]
             })
 
-    pp.pprint(key_val_data)
-    pp.pprint(reduced_data)
+    # Save as a json file.
+    with open('networks.json', 'w') as fp:
+        json.dump({'data': reduced_data}, fp, indent=4)
 
 
 if __name__ == "__main__":
